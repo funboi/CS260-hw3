@@ -1,4 +1,3 @@
-from pointerlist import PointerList
 import requests as r
 
 
@@ -6,8 +5,8 @@ class TrieNode( object ):
     def __init__( self, value: str = None ):
         
         super().__init__()
-        self.key = None
-        #self.value = None
+        #self.key = None
+        self.value = None
         self.children = [None]*26
 
 
@@ -31,16 +30,13 @@ class Trie( object ):
         while len( current_word ) > 0:
             
             current_letter = current_word[0].upper()
+            
             if current_node.children[ord(current_letter) - 65] != None:
                 current_node = current_node.children[ord(current_letter) - 65]
-                
             
             else:
                 new_node = TrieNode()
-                new_node.key = current_letter
-                #if len( current_word ) == 1:
-                #    new_node.value = value
-
+                new_node.value = current_letter
                 current_node.children[ord(current_letter) - 65] = new_node
                 current_node = new_node
                 self.size += 1
@@ -73,7 +69,7 @@ class Trie( object ):
             for child in nodes[0].children:
                 if child != None:
                     nodes.append(child)
-            print (nodes.pop(0).key)
+            print (nodes.pop(0).value)
                 
 
 
