@@ -36,8 +36,8 @@ class Openhash:
 		for k in self.__htable[i]:
 			if k[0] == key:
 				self.__htable[i].remove([key, k[1]])
-				return
-		raise IndexError
+				return 0
+		return -1
 
 def insrt(i):
 	oh = Openhash(i)

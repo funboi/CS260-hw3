@@ -1,16 +1,14 @@
 from timeit import timeit
-from random import randint
+from random import randint, seed
 
 class Closedhash:
-
-	''' Dictionary using Open Hashtable '''
-	
+	# Dictionary using Open Hashtable
 	# creates an empty hash table with b buckets
 	def __init__(self, b):
-        self.__insertCount = 0
-        self.__deleteCount = 0
-		self.__htable = [[None,None]] * b 
-		
+		self.__htable = [[None,None]] * b
+		self.__insrtCnt = 0
+		self.__dltCnt = 0	
+
 	# overwrites the __getitem__ function 
     # member function
 	def __getitem__(self, key):
@@ -25,6 +23,12 @@ class Closedhash:
 	def __str__(self):
 		return str(self.__htable)
 
+	def insertCnt(self):
+		return self.__insrtCnt
+	
+	def deleteCnt(self):
+		return self.__dltCnt
+
 	# basic hash function
 	def hash(self, x):
 		return (ord(str(x)[0]) % len(self.__htable))
@@ -32,52 +36,71 @@ class Closedhash:
 	# inserts a key, value pair 
 	def insert(self, key, value):
 		i = self.hash(key)
-		count = 0
+		self.__insrtCnt = 0
 		while self.__htable[i][0] is not None:
-			if count >= len(self.__htable):
+			if self.__insrtCnt > len(self.__htable) + 1:
 				raise IndexError
 			if i < (len(self.__htable) - 1): 
 				i += 1
 			else:
 				i = 0
-			count += 1
+			self.__insrtCnt += 1
 		self.__htable[i] = [key, value]
 
 	# deletes a key, value pair with a given key
 	def delete(self, key):
 		i = self.hash(key)
+		self.__dltCnt = 0
 		while self.__htable[i][0] is not None:
 			if self.__htable[i][0] == key:
 				self.__htable[i] = [None,None]
-				return
+				return 0
 			else:
 				i += 1
-		return 0
+				if i == len(self.__htable):
+					i = 0
+				if i == self.hash(key):
+					break
+				self.__dltCnt += 1
+		return -1
 
-
-def insrt(i):
+def populate(i):
 	ch = Closedhash(i)
 	for k in range(i):
 		ch.insert(k, randint(0, k))
 	return ch
 
-def dlt(i):
-	ch = insrt(i)
-	for k in range(i):
-		ch.delete(k)
+def insrtCounter(i):
+	probes = 0
+	ch = Closedhash(i)
+	for k in range(100):
+		ch.insert(randint(0, k), randint(0, k))
+		probes += ch.insertCnt()
+	return probes
+
+def dltCounter(i):
+	probes = 0
+	ch = populate(i)
+	for k in range(100):
+		x = randint(0, i-1)
+		ch.delete(x)
+		probes += ch.deleteCnt()
+	return probes
 
 def insertTest():
-	print("input  |  timing (ms)")
+	print("input  |  number of probes")
+	print("-"*25)
 	for i in range(100, 1000, 100):
-		print(i, "   | ", insrt(i))
+		print(i, "   | ", insrtCounter(i))
 	
 def deleteTest():
-	print("\ninput  |  timing (ms)")
+	print("\ninput  |  number of probes")
+	print("-"*25)
 	for i in range(100, 1000, 100):
-		print(i, "   | ", dlt(i))
+		print(i, "   | ", dltCounter(i))
 
 if __name__ == '__main__':
-	print("Inserting: ")
+	print("\nInserting:\n")
 	insertTest()
-	print("\nDeleting: ")
+	print("\nDeleting:")
 	deleteTest()
