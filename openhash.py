@@ -39,29 +39,34 @@ class Openhash:
 				return 0
 		return -1
 
-def insrt(i):
-	oh = Openhash(i)
+# populates a hash table with i elements and i // 10 buckets
+def populate(i):
+	oh = Openhash(i // 10)
 	for k in range(i):
 		oh.insert(k, randint(0, k))
 	return oh
 
+# create an open hash table with i elements and then delete them
 def dlt(i):
-	oh = insrt(i)
+	oh = populate(i)
 	for k in range(i):
 		oh.delete(k)
 
+# test insertion on 100-900 elements
 def insertTest():
 	print("input  |  timing (ms)")
 	for i in range(100, 1000, 100):
-		print(i, "   | ", 1000*timeit(lambda: insrt(i), number=100)/100)
-	
+		print(i, "   | ", 1000*timeit(lambda: populate(i), number=100)/100)
+
+# test deletion on 100-900 elements
 def deleteTest():
 	print("\ninput  |  timing (ms)")
 	for i in range(100, 1000, 100):
 		print(i, "   | ", 1000*timeit(lambda: dlt(i), number=100)/100)
 
+
 if __name__ == '__main__':
-	print("Inserting: ")
+	print("Inserting:\n")
 	insertTest()
 	print("\nDeleting: ")
 	deleteTest()

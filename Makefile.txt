@@ -20,3 +20,6 @@ problem2:
 
 alice:
     cat alice.txt
+
+clean:
+    rm *.pyc

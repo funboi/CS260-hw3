@@ -18,14 +18,17 @@ class Closedhash:
 				return self.__htable[i][1]
 			else:
 				i += 1
-		raise IndexError
+		raise IndexError # raise error if element not found
 
+	# overwrites the string function
 	def __str__(self):
 		return str(self.__htable)
 
+	# return insertion count (# of probes)
 	def insertCnt(self):
 		return self.__insrtCnt
 	
+	# return deletion count (# of probes)
 	def deleteCnt(self):
 		return self.__dltCnt
 
@@ -48,6 +51,7 @@ class Closedhash:
 		self.__htable[i] = [key, value]
 
 	# deletes a key, value pair with a given key
+	# returns -1 if not found
 	def delete(self, key):
 		i = self.hash(key)
 		self.__dltCnt = 0
@@ -64,12 +68,14 @@ class Closedhash:
 				self.__dltCnt += 1
 		return -1
 
+# creates a closed hash table and populates it with i items
 def populate(i):
 	ch = Closedhash(i)
 	for k in range(i):
 		ch.insert(k, randint(0, k))
 	return ch
 
+# counts # of probes in i insertions
 def insrtCounter(i):
 	probes = 0
 	ch = Closedhash(i)
@@ -78,6 +84,7 @@ def insrtCounter(i):
 		probes += ch.insertCnt()
 	return probes
 
+# counts # of probes in i deletions
 def dltCounter(i):
 	probes = 0
 	ch = populate(i)
@@ -87,12 +94,14 @@ def dltCounter(i):
 		probes += ch.deleteCnt()
 	return probes
 
+# tests # of probes in insertion on 100-900 elements
 def insertTest():
 	print("input  |  number of probes")
 	print("-"*25)
 	for i in range(100, 1000, 100):
 		print(i, "   | ", insrtCounter(i))
 	
+# tests # of probes in deletion on 100-900 elements
 def deleteTest():
 	print("\ninput  |  number of probes")
 	print("-"*25)
