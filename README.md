@@ -5,4 +5,4 @@ Rayan: 4, 8, ?
 Nathan: 3, ?
 
 
-problem1.txt and problem2.txt contain the explainations and conclusions for problems 1 and 2 respectively
+problem1.txt and problem2.txt contain the explainations and conclusions for problems 1 and 2 respectively.
