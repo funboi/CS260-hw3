@@ -54,19 +54,23 @@ def dlt(i):
 
 # test insertion on 100-900 elements
 def insertTest():
-	print("input  |  timing (ms)")
+	print("input  |  timing (0.1s)  |  timing per elem. (0.1s)")
+	print("-"*51)
 	for i in range(100, 1000, 100):
-		print(i, "   | ", 1000*timeit(lambda: populate(i), number=100)/100)
+		timing = 1000*timeit(lambda: populate(i), number=100)/100
+		print("{0:d}{1:>5s}{2:^17.5f}{1}{3:^26f}".format(i, "|", timing, timing/i))
 
 # test deletion on 100-900 elements
 def deleteTest():
-	print("\ninput  |  timing (ms)")
+	print("input  |  timing (0.1s)  |  timing per elem. (0.1s)")
+	print("-"*51)
 	for i in range(100, 1000, 100):
-		print(i, "   | ", 1000*timeit(lambda: dlt(i), number=100)/100)
+		timing = 1000*timeit(lambda: dlt(i), number=100)/100
+		print("{0:d}{1:>5s}{2:^17.5f}{1}{3:^26f}".format(i, "|", timing, timing/i))
 
 
 if __name__ == '__main__':
 	print("Inserting:\n")
 	insertTest()
-	print("\nDeleting: ")
+	print("\nDeleting:\n")
 	deleteTest()
