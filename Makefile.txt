@@ -1,0 +1,22 @@
+.Phony: closedhash openhash trie tries dijkstra problem1 problem2 alice
+
+closedhash: closedhash.py
+    python3 closedhash.py
+
+openhash: openhash.py
+    python3 openhash.py
+
+trie: trie.py
+    python3 openhash.py
+
+tries: tries.py
+    python3 tries.py
+
+problem1:
+    cat problem1.txt
+
+problem2:
+    cat problem2.txt
+
+alice:
+    cat alice.txt
