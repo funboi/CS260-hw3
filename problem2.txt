@@ -1,12 +1,42 @@
 Testing Done:
 Wran the insertion and deletion on datasets of size 100-900, inserting
 or deleting 100 elements. In each insertion and deletion we counted the 
-number of probes and summed them. Dividing this final result by 100 gives
-the average number of probes for an insertion or deletion. We also calculated
-a (elements over buckets). From there we calculated the expected values using 
-the given formula and checked if they were close.
+number of probes and summed them for that insertion or deletion. Dividing this final result
+by 100 gives the average number of probes for an insertion or deletion in our example.
+We also calculated a (# elements over # buckets). From there we calculated the expected 
+values using the given formula and checked if they were close.
 
 Program Output:
 
+Inserting:
+input  |  avg. number of probes  |   a   |  (1+1/(1-a)^2)/2      
+-----------------------------------------------------------      
+100    |           45            | 0.99  |     5000.50
+200    |           45            | 0.49  |      2.46
+300    |           45            | 0.33  |      1.61
+400    |           45            | 0.25  |      1.38
+500    |           45            | 0.20  |      1.28
+600    |           44            | 0.17  |      1.22
+700    |           45            | 0.14  |      1.18
+800    |           45            | 0.12  |      1.15
+900    |           45            | 0.11  |      1.13
+
+Deleting:
+input  |  avg. number of probes  |   a   |  (1+1/(1-a))/2        
+-----------------------------------------------------------      
+100    |            3            | 0.00  |      1.00
+200    |           10            | 0.50  |      1.50
+300    |            9            | 0.67  |      2.00
+400    |           20            | 0.75  |      2.50
+500    |           19            | 0.80  |      3.00
+600    |           14            | 0.83  |      3.50
+700    |           24            | 0.86  |      4.00
+800    |           21            | 0.88  |      4.50
+900    |           65            | 0.89  |      5.00
+
 
 Conclusion:
+Based on our understanding of the constant a, from problem 1,
+a should be # elements / # buckets. But when we ran with this code,
+a was nowhere near the average # of probes. Our results are wrong
+for a.

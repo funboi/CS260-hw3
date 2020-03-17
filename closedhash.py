@@ -120,5 +120,5 @@ def deleteTest():
 if __name__ == '__main__':
 	print("\nInserting:\n")
 	insertTest()
-	print("\nDeleting:")
+	print("\nDeleting:\n")
 	deleteTest()
