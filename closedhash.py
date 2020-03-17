@@ -76,15 +76,17 @@ def populate(i):
 	return ch
 
 # counts # of probes in i insertions
+# also returns a
 def insrtCounter(i):
 	probes = 0
 	ch = Closedhash(i)
-	for k in range(100):
+	for k in range(99):
 		ch.insert(randint(0, k), randint(0, k))
 		probes += ch.insertCnt()
-	return probes
+	return [probes // 100, 99/i]
 
 # counts # of probes in i deletions
+# also returns a
 def dltCounter(i):
 	probes = 0
 	ch = populate(i)
@@ -92,33 +94,31 @@ def dltCounter(i):
 		x = randint(0, i-1)
 		ch.delete(x)
 		probes += ch.deleteCnt()
-	return probes
+	return [probes // 100, (i - 100)/i]
 
 # tests # of probes in insertion on 100-900 elements
 def insertTest():
-	print("input  |  number of probes")
-	print("-"*25)
+	print("input  |  avg. number of probes  |   a   |  (1+1/(1-a)^2)/2")
+	print("-"*59)
 	for i in range(100, 1000, 100):
-		print(i, "   | ", insrtCounter(i))
+		insrt = insrtCounter(i)
+		probes = insrt[0] # number of probes
+		a = insrt[1] # a
+		formula = (1+(1/((1-a) ** 2)))/2
+		print("{1}{0:>5}{2:^25}{0}{3:^7.2f}{0}{4:^17.2f}".format("|", i, probes, a, formula))
 	
 # tests # of probes in deletion on 100-900 elements
 def deleteTest():
-	print("\ninput  |  number of probes")
-	print("-"*25)
+	print("input  |  avg. number of probes  |   a   |  (1+1/(1-a))/2")
+	print("-"*59)
 	for i in range(100, 1000, 100):
-		print(i, "   | ", dltCounter(i))
-
+		dlt = dltCounter(i)
+		probes = dlt[0] # number of probes
+		a = dlt[1] # a
+		formula = (1+1/(1-a))/2
+		print("{1}{0:>5}{2:^25}{0}{3:^7.2f}{0}{4:^17.2f}".format("|", i, probes, a, formula))
 if __name__ == '__main__':
-<<<<<<< HEAD
-    print ( " \n--------------------- Closed Hash Implementation ---------------------\n" )
-    print ( "\nInserting:\n" )
-    insertTest()
-    print ( "\nDeleting:\n" )
-    deleteTest()
-    print ()
-=======
 	print("\nInserting:\n")
 	insertTest()
 	print("\nDeleting:")
 	deleteTest()
->>>>>>> 541721bb129fe8f65413d2447cddaa33b40542d3

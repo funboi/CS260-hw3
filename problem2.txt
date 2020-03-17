@@ -1,28 +1,12 @@
+Testing Done:
+Wran the insertion and deletion on datasets of size 100-900, inserting
+or deleting 100 elements. In each insertion and deletion we counted the 
+number of probes and summed them. Dividing this final result by 100 gives
+the average number of probes for an insertion or deletion. We also calculated
+a (elements over buckets). From there we calculated the expected values using 
+the given formula and checked if they were close.
 
-Inserting:
+Program Output:
 
-input  |  number of probes
--------------------------
-100    |  4589
-200    |  4633
-300    |  4621
-400    |  4614
-500    |  4631
-600    |  4619
-700    |  4608
-800    |  4631
-900    |  4650
 
-Deleting:
-
-input  |  number of probes
--------------------------
-100    |  627
-200    |  1025
-300    |  513
-400    |  712
-500    |  450
-600    |  2385
-700    |  1138
-800    |  2767
-900    |  5279
+Conclusion:
