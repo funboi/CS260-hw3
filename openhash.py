@@ -73,18 +73,8 @@ def deleteTest():
 		print("{0:d}{1:>5s}{2:^17.5f}{1}{3:^26f}".format(i, "|", timing, timing/i))
 
 
-<<<<<<< HEAD
-if __name__ == "__main__":
-    print ( "\n--------------------- Open Hash Implementation ---------------------\n" )
-    print("\nInserting:\n")
-    insertTest()
-    print ( "\nDeleting:\n" )
-    deleteTest()
-    print ()
-=======
 if __name__ == '__main__':
 	print("Inserting:\n")
 	insertTest()
 	print("\nDeleting:\n")
 	deleteTest()
->>>>>>> 541721bb129fe8f65413d2447cddaa33b40542d3
