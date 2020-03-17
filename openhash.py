@@ -7,11 +7,9 @@ class Openhash:
 	
 	# creates an empty hash table with b buckets
 	def __init__(self, b):
-<<<<<<< HEAD
 		self.__htable = [[]] * b
-=======
 		self.__htable = [[]] * b 
->>>>>>> 541721bb129fe8f65413d2447cddaa33b40542d3
+
 		
 	# overwrites the __getitem__ function 
 	# member function
