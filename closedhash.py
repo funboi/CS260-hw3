@@ -109,9 +109,16 @@ def deleteTest():
 		print(i, "   | ", dltCounter(i))
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     print ( " \n--------------------- Closed Hash Implementation ---------------------\n" )
     print ( "\nInserting:\n" )
     insertTest()
     print ( "\nDeleting:\n" )
     deleteTest()
     print ()
+=======
+	print("\nInserting:\n")
+	insertTest()
+	print("\nDeleting:")
+	deleteTest()
+>>>>>>> 541721bb129fe8f65413d2447cddaa33b40542d3
