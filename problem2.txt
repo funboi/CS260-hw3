@@ -39,4 +39,5 @@ Conclusion:
 Based on our understanding of the constant a, from problem 1,
 a should be # elements / # buckets. But when we ran with this code,
 a was nowhere near the average # of probes. Our results are wrong
-for a.
+for a. Also the value for the insertion into a 100 bucket list is wrong,
+because it inserts 100 elements into 100 buckets and the formula breaks.
